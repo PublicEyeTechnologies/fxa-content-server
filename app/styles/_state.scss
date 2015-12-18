@@ -1,0 +1,208 @@
+.error,
+.success,
+.info {
+  border-radius: $small-border-radius;
+  color: $message-text-color;
+  display: none;
+  margin-bottom: 5px;
+  padding: 5px;
+  position: relative;
+  top: -15px;
+
+  @include respond-to('trustedUI') {
+    margin: 0 0 10px 0;
+    top: 0;
+  }
+
+  @include respond-to('small') {
+    top: -7px;
+  }
+
+  @include respond-to('big') {
+    top: -15px;
+  }
+
+  a {
+    color: $message-text-color;
+  }
+
+  /*Pull the message up to bring it closer to the header*/
+  &.nudge {
+    top: -10px;
+  }
+}
+
+.error {
+  background: $error-background-color;
+
+  &.visible {
+    display: block;
+  }
+
+  .loading & {
+    // there is no header on the loading screen. Push the text down slightly.
+    margin-top: 20px;
+  }
+}
+
+.success {
+  background: $success-background-color;
+  display: none;
+}
+
+.info {
+  background: $info-background-color;
+  display: block;
+}
+
+// complete is like success, but without the associated styles.
+.complete {
+  display: none;
+}
+
+.progress-hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.reset-warning {
+  font-size: $small-font;
+  font-weight: normal;
+}
+
+// Put a margin on top when the error messages follow a div
+div + .success,
+div + .error {
+  margin-top: 10px;
+}
+
+/* Animation triggering classes */
+.shake {
+  animation: shake $long-transition;
+}
+
+.fadein {
+  animation: fadein $long-transition;
+}
+
+.fade-in-forward {
+  animation: fadein $short-transition forwards;
+}
+
+.fade-down-tt {
+  animation: fade-down-tt $medium-transition;
+}
+
+.fade-up-tt {
+  animation: fade-up-tt $medium-transition;
+}
+
+.pulse {
+  animation: pulse $medium-transition;
+}
+
+
+/* Keyframes */
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+//used to spin loader elements
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+//used for tooltips below form element
+@keyframes fade-up-tt {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//used for tooltips above form element
+@keyframes fade-down-tt {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//used for pulsing checkbox
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: scale(1, 1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1, 1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+//used for bringing  logo into position
+@keyframes fade-down-logo {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//used to add shake to error/success message
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
+}

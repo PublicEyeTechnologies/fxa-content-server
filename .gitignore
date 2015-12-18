@@ -1,0 +1,78 @@
+# Created by http://gitignore.io
+
+### Node ###
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log*
+node_modules
+
+### Bower ###
+app/bower_components
+
+
+### Linux ###
+.*
+!.gitignore
+!.git*
+!.bowerrc
+!.editorconfig
+!.jshintrc
+!.npmignore
+!.travis.yml
+!.awsbox.json
+*~
+
+
+### SASS ###
+### SASS Ignores - "Sassy CSS" http://sass-lang.com/
+*.sass-cache
+
+app/styles/*.css
+!app/styles/fontello.css
+
+
+### Yeoman ###
+dist
+test/temp
+
+
+### Pre-processed files that become part of the build ###
+app/scripts/processed
+
+### Pre-processed error pages
+app/500.html
+app/502.html
+app/503.html
+
+### Local configuration ###
+server/config/local.json
+
+### Localization JSON ###
+app/i18n
+
+### Generated fonts CSS ###
+app/styles/fonts
+
+### Fonts copied from connect-fonts packages ###
+app/fonts/default
+app/fonts/latin
+
+### Strings
+locale/*/*/*.po
+
+### Source maps
+*.map
+
+### Experiments
+/experiments

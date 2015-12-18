@@ -1,0 +1,211 @@
+// Border box all the things by default
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+
+  @include respond-to('reasonableUI') {
+    background-color: $html-background-color;
+  }
+
+  @include respond-to('trustedUI') {
+    background-color: $content-background-color;
+  }
+
+  &.chromeless {
+    background-color: $chromeless-html-background-color;
+  }
+}
+
+body {
+  @include font();
+  color: $text-color;
+  font-size: $base-font;
+
+  @include respond-to('reasonableUI') {
+    padding-bottom: 20px;
+  }
+
+  @include respond-to('trustedUI') {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+noscript {
+  top: 10%;
+}
+
+.browsehappy {
+  top: 25%;
+}
+
+noscript,
+.browsehappy {
+  color: $error-text-color;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+
+  a {
+    color: $error-text-color;
+  }
+}
+
+a {
+  color: $link-color;
+  cursor: pointer; // Use the correct cursor for anchors without an href
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    outline: 1px dotted $link-color;
+  }
+}
+
+header {
+  h1,
+  h2,
+  h3 {
+    @include header-font();
+    line-height: 1em;
+    margin: 0;
+  }
+
+  h1 {
+    font-weight: 200;
+
+    @include respond-to('big') {
+      font-size: $large-font;
+      margin: 0 0 24px 0;
+    }
+
+    @include respond-to('small') {
+      font-size: $medium-font + $media-adjustment;
+      margin: 0 0 16px 0;
+    }
+
+    @include respond-to('trustedUI') {
+      font-size: $medium-font;
+      margin: 0 0 10px 0;
+    }
+
+    &#fxa-choose-what-to-sync-header {
+      margin-bottom: 10px;
+    }
+
+    .service, .email {
+      display: block;
+
+      @include respond-to('big') {
+        font-size: $medium-font;
+        margin-top: 10px;
+      }
+
+      @include respond-to('small') {
+        font-size: $base-font;
+        font-weight: 400;
+        margin-top: 4px;
+
+      }
+
+      .chromeless & {
+        display: none;
+      }
+    }
+
+    .email {
+      color: $faint-text-color;
+      // allow long email addresses to be
+      // split across lines
+      word-break: break-all;
+    }
+  }
+
+  h2 {
+    font-size: $large-font;
+  }
+}
+
+button,
+input {
+  @include font();
+}
+
+section p {
+
+  @include respond-to('big') {
+    font-size: $medium-font;
+  }
+
+  @include respond-to('small') {
+    font-size: $base-font;
+  }
+
+
+  &.prefill {
+    word-wrap: break-word;
+
+    @include respond-to('reasonableUI') {
+      margin-top: 24px;
+    }
+
+    @include respond-to('trustedUI') {
+      margin-top: 10px;
+    }
+  }
+}
+
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+  color: $input-placeholder-color !important;
+  opacity: 1;
+}
+
+.email {
+  display: block;
+}
+
+
+.browsehappy {
+  display: block;
+}
+
+.show-visible-url & {
+  // Links cannot be opened from the TOS/PP text when signing
+  // in to Sync on Fx for iOS. When signing in elsewhere, links
+  // replace the app. Yuck. Show the links href next to the link text.
+  // The href is fetched from the data-visible-url attribute instead of
+  // the href attribute because some links are the same as their
+  // text. In those cases, there is no point showing both.
+  //
+  // hrefs are only visible from the app, when the TOS/PP agreements
+  // are opened directly, the links display/act normally.
+  a[href^=http] {
+    // using text-decoration: underline underlines the ::after
+    // section as well, with no way to remove it.
+    // So, add a border to the entire element, then hide
+    // the border in the ::after using a border that is the same
+    // color as the background.
+    color: $text-color;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  a[data-visible-url^=http]:after,
+  a[data-visible-url^=http]::after {
+    border-bottom: 1px solid $content-background-color;
+    content: " (" attr(href) ") ";
+  }
+}

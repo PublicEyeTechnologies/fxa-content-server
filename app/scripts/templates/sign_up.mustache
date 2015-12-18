@@ -1,0 +1,84 @@
+<div id="main-content" class="card">
+  <header>
+    <h1 id="fxa-signup-header">
+      {{#serviceName}}
+        <!-- L10N: For languages structured like English, the second phrase can read "to continue to %(serviceName)s" -->
+        {{#t}}Create a Firefox Account{{/t}} <span class="service">{{#t}}Continue to %(serviceName)s{{/t}}</span>
+      {{/serviceName}}
+      {{^serviceName}}
+        {{#t}}Create a Firefox Account{{/t}}
+      {{/serviceName}}
+    </h1>
+  </header>
+
+  <section>
+    {{#error}}
+      <div class="error visible">{{ error }}</div>
+    {{/error}}
+
+    {{^error}}
+    <div class="error"></div>
+    <div class="success"></div>
+    {{#isMigration}}
+      <div class="info nudge">{{#t}}Migrate your sync data by creating a new Firefox&nbsp;Account.{{/t}}</div>
+    {{/isMigration}}
+
+    <form novalidate>
+      <div class="input-row">
+        <input type="email" class="email" placeholder="{{#t}}Email{{/t}}" value="{{ email }}" spellcheck="false" {{#shouldFocusEmail}}autofocus{{/shouldFocusEmail}} required />
+      </div>
+
+      <div class="input-row password-row">
+        <input id="password" type="password" class="password tooltip-below" placeholder="{{#t}}Password{{/t}}" value="{{ password }}" pattern=".{8,}" required {{#isPasswordAutoCompleteDisabled}}autocomplete="off"{{/isPasswordAutoCompleteDisabled}} {{#shouldFocusPassword}}autofocus{{/shouldFocusPassword}} />
+        <input id="show-password" type="checkbox" class="show-password" aria-controls="password" tabindex="-1" data-novalue />
+        <label for="show-password" class="show-password-label">
+          {{#t}}Show{{/t}}
+        </label>
+        <div class="input-help input-help-focused input-help-signup">{{#t}}Must be at least 8 characters{{/t}}</div>
+
+      </div>
+
+      <div id="coppa">
+      </div>
+
+      <div class="extra-links">
+        {{#t}}By proceeding, you agree to the <a id="fxa-tos" href="/legal/terms">Terms of Service</a> and <a id="fxa-pp" href="/legal/privacy">Privacy Notice</a> of Firefox cloud services.{{/t}}
+      </div>
+
+      {{#isEmailOptInVisible}}
+      <div class="input-row marketing-email-optin-row">
+          <label class="fxa-checkbox"><input id="marketing-email-optin" type="checkbox" class="marketing-email-optin"><span>{{#t}}Get the latest news about Mozilla and Firefox.{{/t}}</span></label>
+      </div>
+      {{/isEmailOptInVisible}}
+
+      {{#isSyncTop}}
+      {{#chooseWhatToSyncCheckbox}}
+        <div class="input-row customize-sync-row">
+          <label class="fxa-checkbox"><input id="customize-sync" type="checkbox" class="customize-sync customize-sync-top" {{#isCustomizeSyncChecked}}checked="checked"{{/isCustomizeSyncChecked}}> <span class="fxa-checkbox__label">{{#t}}Choose what to sync{{/t}}</span></label>
+        </div>
+      {{/chooseWhatToSyncCheckbox}}
+      {{/isSyncTop}}
+
+      <div class="button-row">
+        <button id="submit-btn" type="submit" class="disabled">{{#t}}Sign up{{/t}}</button>
+      </div>
+
+      {{#isSync}}
+      {{#chooseWhatToSyncCheckbox}}
+        <div class="input-row customize-sync-row">
+          <label class="fxa-checkbox">
+            <input id="customize-sync" type="checkbox" class="customize-sync customize-sync-bottom" {{#isCustomizeSyncChecked}}checked="checked"{{/isCustomizeSyncChecked}}>
+            <span>{{#t}}Choose what to sync{{/t}}</span>
+          </label>
+        </div>
+      {{/chooseWhatToSyncCheckbox}}
+      {{/isSync}}
+    </form>
+
+    <div class="links">
+      <a href="/signin" class="sign-in">{{#t}}Have an account? Sign in.{{/t}}</a>
+    </div>
+
+    {{/error}}
+  </section>
+</div>

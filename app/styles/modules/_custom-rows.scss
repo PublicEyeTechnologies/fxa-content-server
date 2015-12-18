@@ -1,0 +1,204 @@
+/* Custom rows */
+.description {
+  font-size: $medium-font;
+}
+
+.links {
+  overflow: auto;
+  // the 1px of padding allows the :focus outline on anchors to show.
+  padding: 1px;
+  text-align: center;
+
+  + .extra-links {
+    margin: 20px 0 15px 0;
+  }
+
+  .left {
+    float: left;
+    padding: 0 4% 0 0;
+    text-align: left;
+    width: 50%;
+  }
+
+  .right {
+    float: right;
+    padding: 0 0 0 4%;
+    text-align: right;
+    width: 50%;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+ul.links {
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin: 12px 0;
+    padding: 0;
+  }
+}
+
+.extra-links,
+.extra-links a {
+  color: $input-placeholder-color;
+  margin-top: 20px;
+  transition-duration: $short-transition;
+}
+
+.extra-links a:active,
+.extra-links a:hover,
+.extra-links a:focus {
+  color: $link-color;
+}
+
+.extra-links-choose-what-to-sync {
+  margin-top: 0;
+}
+
+.verification-email-message,
+.signed-in-email-message {
+  word-wrap: break-word;
+}
+
+.customize-sync-row {
+  color: $input-placeholder-color;
+  margin-bottom: 10px !important;
+}
+
+.marketing-email-optin-row {
+  color: $input-placeholder-color;
+
+  @include respond-to('small') {
+    margin: 10px 0;
+  }
+
+  @include respond-to('big') {
+    margin: 20px 0 10px 0;
+  }
+}
+
+.choose-what-to-sync-row {
+
+  label {
+    display: block;
+    text-align: left;
+
+    .fxa-checkbox__box-outline {
+      // The default is 2px, but leaves the checkbox
+      // too high in comparison to the text.
+      top: 5px;
+    }
+  }
+}
+
+.cannot-create-account-content {
+  margin-top: 105px;
+
+  @include respond-to('small') {
+    margin-top: 30px;
+  }
+}
+
+.change-password .password-row,
+.complete-reset-password .password-row {
+  margin-bottom: 15px;
+}
+
+@include respond-to('small') {
+  .extra-links,
+  .links + .extra-links {
+    font-size: $small-font;
+    margin: 10px auto;
+    max-width: 340px;
+  }
+
+  .links .left,
+  .links .right {
+    display: block;
+    float: none;
+    margin: 5px 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@include respond-to('trustedUI') {
+  .links {
+    margin: 0;
+  }
+
+  .extra-links,
+  .links + .extra-links {
+    margin: 5px auto;
+  }
+
+  .extra-links +
+  .button-row {
+    margin: 0;
+  }
+}
+
+.small-label,
+.label-helper {
+  border-radius: $small-border-radius;
+  color: $input-placeholder-color;
+  font-size: $small-font;
+  font-weight: normal;
+  height: 16px;
+  margin: 0 10px;
+}
+
+.modal {
+  .small-label,
+  .label-helper {
+    margin-left: 1px;
+  }
+}
+
+.label-helper {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+#permissions {
+  .input-row {
+    text-align: left;
+    margin: 30px 0;
+  }
+
+  input[disabled] {
+    background-color: $input-background-disabled-color;
+    border-color: $input-border-disabled-color;
+    color: $input-disabled-color;
+  }
+}
+
+ul.permission-links {
+  li {
+    margin:  0;
+    padding: 0;
+  }
+}
+
+.two-col-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0 10px 0;
+
+  .two-col-block {
+    min-width: 49%;
+    > div {
+      margin-bottom: 10px;
+    }
+  }
+}

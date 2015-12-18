@@ -1,0 +1,215 @@
+.avatar-wrapper {
+  border-radius: 50%;
+  border-width: 0;
+  display: inline-block;
+  height: $avatar-size;
+  line-height: 0;
+  margin: 0 0 5px;
+  overflow: hidden;
+  position: relative;
+  width: $avatar-size;
+
+  &.avatar-view {
+    display: block;
+    margin: 0 auto;
+
+    @include respond-to('reasonableUI') {
+      background-size: 120px auto;
+      height: 120px;
+      width: 120px;
+    }
+
+    @include respond-to('trustedUI') {
+      background-size: 100px auto;
+      height: 100px;
+      width: 100px;
+    }
+
+    img,
+    .change-avatar {
+      display: block;
+      height: 120px;
+      width: 120px;
+    }
+
+    small {
+      bottom: 0;
+      position: absolute;
+    }
+  }
+
+  &.avatar-settings-view {
+    border: 1px solid $faint-text-color;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+
+
+    @include respond-to('big') {
+      height: 80px;
+      top: 38px;
+      width: 80px;
+    }
+
+    @include respond-to('small') {
+      height: 50px;
+      top: 24px;
+      width: 50px;
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    img,
+    span,
+    .change-avatar {
+
+      @include respond-to('big') {
+        height: 80px;
+        width: 80px;
+      }
+
+      @include respond-to('small') {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  img {
+    background-color: $content-background-color;
+    display: block;
+    height: $avatar-size;
+    width: $avatar-size;
+
+    &.hidden {
+      display: none;
+    }
+
+    &.default {
+      background-image: image-url('default-profile.svg');
+      background-size: cover;
+    }
+  }
+
+  .avatar-camera-wrapper {
+    border-radius: 50%;
+    position: relative;
+  }
+}
+
+.with-default {
+  background: image-url('default-profile.svg') center;
+  background-repeat: no-repeat;
+}
+
+.change-avatar-text {
+  font-size: $small-font;
+  margin-top: 0;
+  visibility: hidden;
+}
+
+#done {
+  width: 100%;
+}
+
+.notice {
+  color: $faint-text-color;
+  font-size: $base-font;
+}
+
+.main-avatar {
+  display: inline-block;
+  position: relative;
+  width: $avatar-size;
+}
+
+#avatar-options {
+  .remove {
+    display: inline-block;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+
+/* Circle Avatar Styles */
+.avatar-camera canvas {
+  display: none;
+}
+
+.avatar-change {
+  .gravatar-logo {
+    background: image-url('gravatar.svg') no-repeat top center;
+    background-size: contain;
+    /* This reduces the size of the gravatar logo to match the other icons */
+    font-size: 30px;
+
+    /* Mimic the style of the fontello icons */
+    &:before {
+      content: ' ';
+      display: inline-block;
+      font-variant: normal;
+      line-height: 1em;
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+      text-align: center;
+      text-decoration: inherit;
+      text-transform: none;
+      width: 1em;
+    }
+  }
+
+  nav {
+    margin: 0 -40px -40px -40px;
+    padding: 20px;
+
+    a {
+      display: inline-block;
+      line-height: 1.1;
+      text-decoration: none;
+
+      @include respond-to('big') {
+        height: 80px;
+        margin: 5px;
+        min-width: 80px;
+        padding: 11px;
+      }
+
+      @include respond-to('small') {
+        margin: 0 0 10px 0;
+        min-width: 75px;
+      }
+
+    }
+
+    span {
+      font-size: 35px;
+
+      &:after {
+        content: '\A';
+        white-space: pre;
+      }
+    }
+  }
+
+  .error {
+    position: static;
+  }
+}
+
+.no-getusermedia #camera {
+  display: none;
+}
+
+section.avatar-panel {
+  text-align: center;
+  
+  .button-row {
+    margin-bottom: 0;
+    text-align: left;
+  }
+}
